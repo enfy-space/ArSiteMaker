@@ -1,4 +1,4 @@
-def html(title,animation,glb_path="model/model.glb",marker_patt_path="marker/marker.patt"):
+def html(title,animation,glb_path="model/model.glb",marker_patt_path="marker/marker.patt",scale=1):
     animation_property = 'animation="property: rotation; to: 0 360 0; dur: 4000; easing:easeInCubic; loop: true"'
     html = f"""
     <!DOCTYPE html>
@@ -19,10 +19,10 @@ def html(title,animation,glb_path="model/model.glb",marker_patt_path="marker/mar
             <a-assets>
                 <a-asset-item id="model" src="{glb_path}"></a-asset-item>
             </a-assets>
-            <a-marker type="pattern" url=f"{marker_patt_path}">
+            <a-marker type="pattern" url="{marker_patt_path}">
             
-                <a-entity gltf-model="#model" position="0 1 0" scale="1 1 1"
-                    f{animation_property if animation else ''}></a-entity>
+                <a-entity gltf-model="#model" position="0 1 0" scale="{scale} {scale} {scale}"
+                    {animation_property if animation else ''}></a-entity>
             
             </a-marker>
             <a-entity camera></a-entity>

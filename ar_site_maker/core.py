@@ -3,8 +3,8 @@ import qrcode
 import shutil
 from pymarker.core import generate_patt, generate_marker
 from PIL import Image
-from template import html
-from utlis import *
+from .template import html
+from .utlis import *
 
 def make(project_name,glb_path,marker_path=None, url=None,animation=False,site_title=None):
     check_args(glb_path,marker_path,url)
@@ -29,6 +29,16 @@ def make(project_name,glb_path,marker_path=None, url=None,animation=False,site_t
         # 画像ファイルとして保存する
         img = qr.make_image(fill_color="black", back_color="white")
         img.save(marker_tmp_path)
+        # 画像を開く
+        img = Image.open(marker_tmp_path)
+
+        # グレースケール画像をRGBに変換
+        rgb_img = img.convert("RGB")
+
+        # 変換した画像を保存
+        rgb_img.save(marker_tmp_path)
+
+
     else :
         with Image.open(marker_path) as im:
             # PNG形式で保存する
@@ -36,9 +46,11 @@ def make(project_name,glb_path,marker_path=None, url=None,animation=False,site_t
 
     print(f"making pattern file.. (image: {marker_path})")
     marker_output_dir = f"{project_name}/marker"
+    os.mkdir(marker_output_dir)
     generate_patt(marker_tmp_path,output=marker_output_dir)
     generate_marker(marker_tmp_path, output=marker_output_dir)
 
+    os.mkdir(f"{project_name}/model")
     model_path = f"{project_name}/model/model.glb"
     shutil.copy(glb_path, model_path)
 
