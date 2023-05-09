@@ -2,11 +2,11 @@ import os
 import qrcode
 import shutil
 from pymarker.core import generate_patt, generate_marker
-from PIL import Image
+from PIL import Image, ImageOps
 from .template import html
 from .utlis import *
 
-def make(project_name,glb_path,marker_path=None, url=None,animation=False,site_title=None):
+def make(project_name,glb_path,marker_path=None, url=None,animation=False,site_title=None,scale=1):
     check_args(glb_path,marker_path,url)
 
     while os.path.exists(project_name) :
@@ -50,11 +50,17 @@ def make(project_name,glb_path,marker_path=None, url=None,animation=False,site_t
     generate_patt(marker_tmp_path,output=marker_output_dir)
     generate_marker(marker_tmp_path, output=marker_output_dir)
 
+    os.rename(f"{marker_output_dir}/marker_marker.png", f"{marker_output_dir}/marker.png")
+    img = Image.open(f"{marker_output_dir}/marker.png")
+    padding = 50
+    new_img = ImageOps.expand(img, border=padding, fill='white')
+    new_img.save(f"{marker_output_dir}/marker_add_padding.png")
+
     os.mkdir(f"{project_name}/model")
     model_path = f"{project_name}/model/model.glb"
     shutil.copy(glb_path, model_path)
 
-    html_txt = html(project_name if site_title is None else site_title,animation)
+    html_txt = html(project_name if site_title is None else site_title,animation,scale=scale)
 
     output_html_path = project_name+'/index.html'
     print(f"making html file.. (output: {output_html_path})")
