@@ -8,7 +8,7 @@ You have to allow camera access from demo site.
 <img src="sample_project/marker/marker_add_padding.png" width="400px">
 
 ## How to install
-ar-site-maker is available through pip and PyPi. You need python3.
+ar-site-maker is available through pip and [PyPi](https://pypi.org/project/ar-site-maker/). You need python3.
 ```
 pip install ar-site-maker
 ```
