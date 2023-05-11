@@ -5,6 +5,8 @@ Simply specify the site name, 3D model file (.glb), and marker image (URL).
 You can try demo project by accessing below QR code and holding up QR code a camera after site is loaded.
 You have to allow camera access from demo site.
 
+<img src="sample_project/marker/marker_add_padding.png" width="400px">
+
 ## How to install
 ar-site-maker is available through pip and PyPi. You need python3.
 ```
@@ -78,15 +80,17 @@ of course! you can open help like this
   ar-site-maker make -h 
 ```
 
+#### Output
+Your exported data is in directory named fot the project.
+You can browse exported site by accessing index.html. The marker is stored in marker directory.
+You can use marker.png or marker_add_padding.png ; marker added padding as marker. 
 ```
-
-├── project name
-│   ├── subdirectory1 
-│   │   ├── file1 
-│   │   └── file2 
-│   ├── subdirectory2
-│   ├── file3 
-│   └── file4
-└── README.md
-
+project name
+├── index.html
+├── marker
+│   ├── marker.patt
+│   ├── marker.png
+│   └── marker_add_padding.png
+└── model
+    └── model.glb
 ```
