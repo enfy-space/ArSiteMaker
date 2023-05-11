@@ -6,9 +6,9 @@ from PIL import Image, ImageOps
 from .template import html
 from .utlis import *
 
-def make(project_name,glb_path,marker_path=None, url=None,animation=False,site_title=None,scale=1):
-    check_args(glb_path,marker_path,url)
-
+def make(project_name,glb_path,img=None, url=None,animation=False,site_title=None,scale=1):
+    check_args(glb_path,img,url)
+    marker_path  = img
     while os.path.exists(project_name) :
         project_name += " copy"
     print("your project is here :", project_name)
@@ -67,6 +67,10 @@ def make(project_name,glb_path,marker_path=None, url=None,animation=False,site_t
     with open(output_html_path, 'w') as f:
         # 文字列を書き込む
         f.write(html_txt)
+
+    shutil.rmtree(tmp_dir)
+
+
 
 
 
