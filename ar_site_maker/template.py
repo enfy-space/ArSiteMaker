@@ -10,6 +10,7 @@ def html(title,animation,glb_path="model/model.glb",marker_patt_path="marker/mar
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
         <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.0.0/dist/aframe-extras.min.js"></script>
         <title>{title}</title>
     </head>
     
@@ -21,7 +22,7 @@ def html(title,animation,glb_path="model/model.glb",marker_patt_path="marker/mar
             </a-assets>
             <a-marker type="pattern" url="{marker_patt_path}">
             
-                <a-entity gltf-model="#model" position="0 1 0" scale="{scale} {scale} {scale}"
+                <a-entity gltf-model="#model" animation-mixer position="0 1 0" scale="{scale} {scale} {scale}"
                     {animation_property if animation else ''}></a-entity>
             
             </a-marker>

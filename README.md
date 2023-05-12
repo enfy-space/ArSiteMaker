@@ -31,8 +31,7 @@ What you have to prepare is below.
   Sorry! we don't support .gltf file yet 🥹.
   <br>Please make sure to your model is
 
-  * located around center of coordinate:(0,0,0) 
-  * smaller than cube with 1 meter on a side
+  * located around center of coordinate:(0,0,0)
   * not buried in plane (elevation=0)
 
 * <b> marker image or site URL </b>
